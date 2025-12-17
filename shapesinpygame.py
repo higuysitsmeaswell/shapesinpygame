@@ -1,13 +1,11 @@
 import pygame
+import sys
 pygame.init()
 screen = pygame.display.set_mode((600,600))
 screen.fill((255,255,255))
 blue = (0,0,255)
 pygame.display.update()
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
+
 class Circle():
     def __init__(self,circle_color,circle_radius,circle_width,pos):
         self.circle_color = circle_color
@@ -24,5 +22,20 @@ class Circle():
 
 
 object1 = Circle('blue',78,4,(300,300))
-object1.draw()
-pygame.display.update()
+circle=Circle(blue,(300,300),25,0)
+while 1:
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            screen.fill((255,255,255))
+            object1.draw()
+            pygame.display.update()
+        elif event.type == pygame.MOUSEBUTTONUP:
+            screen.fill((255,255,255))
+            object1.grow(20)
+            pygame.display.update()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
